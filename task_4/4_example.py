@@ -1,10 +1,6 @@
 from subprocess import run
-import time
 
-
-start = time.time()
-
-n = 4 + 1
+n = int(input()) + 1
 m = {}
 m_reverse = {}
 
@@ -70,7 +66,7 @@ while True:
     inp.close()
 
     inp = open("../lingeling/example.out", "w")
-    compl = run("../lingeling/lingeling -q ./lingeling/example.in", shell=True, stdout=inp)
+    compl = run("../lingeling/lingeling -q ../lingeling/example.in", shell=True, stdout=inp)
     inp.close()
 
     inp = open("../lingeling/example.out", "r")
@@ -110,5 +106,3 @@ for a in ans:
             print(m[int(vert)], end=" ")
 
     print()
-
-print(time.time() - start)
