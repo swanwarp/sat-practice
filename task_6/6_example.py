@@ -2,7 +2,7 @@ from subprocess import run
 from time import time
 
 
-peptide = "HHHPPHPHPHPPHPHPHPPH"
+peptide = "HHPPHHPPPPP"
 
 R = []
 
@@ -292,15 +292,15 @@ def sat2(R, L, K, x0, y0, x1, y1):
 
     for i in range(0, N):
         for j in range(0, N):
-            if i >= j:
+            if i == j:
                 continue
+
             for a in range(0, L):
                 for b in range(0, L):
                     clauses.append([-X[i][a], -X[j][a], -Y[i][b], -Y[j][b]])
 
     for i in range(0, N - 1):
         clauses.append([neighbours[i][i + 1]])
-        clauses.append([neighbours[i + 1][i]])
 
     for i in range(0, N):
         for j in range(0, N):
@@ -311,11 +311,11 @@ def sat2(R, L, K, x0, y0, x1, y1):
             clauses.append([-left[i][j], -down[i][j]])
             clauses.append([-up[i][j], -down[i][j]])
 
-    for i in range(0, N):
-        for j in range(0, N):
-            for a in range(0, L):
-                clauses.append([-neighbours[i][j], -X[i][a], -X[j][a], up[i][j], down[i][j]])
-                clauses.append([-neighbours[i][j], -Y[i][a], -Y[j][a], right[i][j], left[i][j]])
+    # for i in range(0, N):
+    #     for j in range(0, N):
+    #         for a in range(0, L):
+    #             clauses.append([-neighbours[i][j], -X[i][a], -X[j][a], up[i][j], down[i][j]])
+    #             clauses.append([-neighbours[i][j], -Y[i][a], -Y[j][a], right[i][j], left[i][j]])
 
     for i in range(0, N):
         for j in range(0, N):
@@ -456,5 +456,5 @@ def sat2(R, L, K, x0, y0, x1, y1):
 
 
 start = time()
-sat2(R, 5, 10, 3, 2, 2, 2)
+sat2(R, 6, 2, 0, 0, 1, 0)
 print(time() - start)
