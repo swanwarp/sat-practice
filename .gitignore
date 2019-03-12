@@ -220,3 +220,5 @@ venv/
 lingeling/
 
 .idea/
+/cms.exe
+*/example.*

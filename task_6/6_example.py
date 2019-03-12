@@ -405,7 +405,7 @@ def sat2(R, L, K, x0, y0, x1, y1):
                 clauses.append([-begin[i][a], -begin[i][b]])
                 clauses.append([-end[i][a], -end[i][b]])
 
-    inp = open("../lingeling/example.in", "w")
+    inp = open("example.in", "w")
 
     inp.write("p cnf ")
     inp.write(str(21 * num))
@@ -419,11 +419,11 @@ def sat2(R, L, K, x0, y0, x1, y1):
 
     inp.close()
 
-    inp = open("../lingeling/example.out", "w")
-    compl = run("../lingeling/lingeling -q ../lingeling/example.in", shell=True, stdout=inp)
+    inp = open("example.out", "w")
+    compl = run("..\cms.exe --verb 0 example.in", shell=True, stdout=inp)
     inp.close()
 
-    inp = open("../lingeling/example.out", "r")
+    inp = open("example.out", "r")
     res = inp.readline()
 
     if res == "s UNSATISFIABLE\n":
@@ -437,7 +437,7 @@ def sat2(R, L, K, x0, y0, x1, y1):
             t = st.split(" ")
             t.pop(0)
 
-            if t[len(t) - 1] == "0\n":
+            if t[len(t) - 1] == "0\n" or t[len(t) - 1] == "\n":
                 t.pop()
 
             s += t
@@ -453,6 +453,8 @@ def sat2(R, L, K, x0, y0, x1, y1):
                 print(Ya[int(s[i])], end=" ")
 
         print()
+
+    inp.close()
 
 
 start = time()
